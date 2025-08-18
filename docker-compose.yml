@@ -12,15 +12,15 @@ services:
       - db
 
   db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: flashcards-sqlserver
-    ports:
-      - "1433:1433"
+    image: postgres:15
     environment:
-      SA_PASSWORD: "YourStrong!Passw0rd"
-      ACCEPT_EULA: "Y"
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+    ports:
+      - "5432:5432"
     volumes:
-      - sql_data:/var/opt/mssql
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  sql_data:
+  pgdata:

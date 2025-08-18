@@ -1,21 +1,28 @@
-# Use the official .NET SDK image for build
+# -----------------------------
+# Build stage
+# -----------------------------
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore as distinct layers
+# Copy project files and restore dependencies
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy everything and build
+# Copy the rest of the source code and publish
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o /app/publish
 
-# Use the runtime image
+# -----------------------------
+# Runtime stage
+# -----------------------------
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
 
-# Expose port your API runs on, e.g. 5000
+# Copy the published output from the build stage
+COPY --from=build /app/publish .
+
+# Expose the port your app runs on
 EXPOSE 8080
 
+# Start the application
 ENTRYPOINT ["dotnet", "backend.dll"]
