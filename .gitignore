@@ -1,3 +1,37 @@
-bin/
-obj/
+# =========================
+# Build artifacts
+# =========================
+backend/bin/
+backend/obj/
+publish/
+
+# =========================
+# User-specific / IDE files
+# =========================
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# =========================
+# Environment / Secrets
+# =========================
 .env
+appsettings.Development.json
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Docker
+# =========================
+**/docker-compose.override.yml
+**/Dockerfile.*.local

@@ -21,5 +21,14 @@ namespace backend.Mappers
                 Answer = flashcardModel.Answer
             };
         }
+
+        public static Flashcard ToFlashcardFromCreateDto(this CreateFlashcardRequestDto flashcardDto)
+        {
+            return new Flashcard
+            {
+                Question = flashcardDto.Question,
+                Answer = flashcardDto.Answer
+            };
+        }
     }
 }

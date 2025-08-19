@@ -13,6 +13,7 @@ namespace backend.Models
 
         public DateOnly NextQuery { get; set; }
 
+        // [Range(0, 7, ErrorMessage = "Level must be between 0 and 7.")]
         public int Level { get; set; } = 0;
 
         public string Question { get; set; } = string.Empty;
@@ -22,11 +23,5 @@ namespace backend.Models
         // public int? UserId { get; set; }
 
         // public User? User { get; set; }
-
-
-        public Flashcard()
-        {
-            NextQuery = CreatedAt.AddDays(1);
-        }
     }
 }
