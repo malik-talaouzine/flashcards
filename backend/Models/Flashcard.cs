@@ -11,7 +11,7 @@ namespace backend.Models
 
         public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
-        public DateOnly NextQuery { get; set; }
+        public DateOnly NextQuery { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
         // [Range(0, 7, ErrorMessage = "Level must be between 0 and 7.")]
         public int Level { get; set; } = 0;
