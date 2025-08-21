@@ -8,6 +8,7 @@ using backend.Data;
 using backend.Mappers;
 using backend.Dtos.Flashcard;
 using backend.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Controllers
 {
@@ -24,6 +25,7 @@ namespace backend.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -32,7 +34,8 @@ namespace backend.Controllers
             return Ok(flashcardDto);
         }
 
-        [HttpGet("{id}")]
+        [Authorize]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var flashcard = await _flashcardRepo.GetByIdAsync(id);
@@ -45,6 +48,7 @@ namespace backend.Controllers
             return Ok(flashcard.ToFlashcardDto());
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateFlashcardRequestDto flashcardDto)
         {
@@ -53,8 +57,9 @@ namespace backend.Controllers
             return CreatedAtAction(nameof(GetById), new { id = flashcardModel.Id }, flashcardModel.ToFlashcardDto());
         }
 
+        [Authorize]
         [HttpPut]
-        [Route("{id}/content")]
+        [Route("{id:int}/content")]
         public async Task<IActionResult> UpdateContent([FromRoute] int id, [FromBody] UpdateFlashcardContentRequestDto updateFlashcardDto)
         {
             var flashcardModel = await _flashcardRepo.UpdateContentAsync(id, updateFlashcardDto);
@@ -67,8 +72,9 @@ namespace backend.Controllers
             return Ok(flashcardModel.ToFlashcardDto());
         }
 
+        [Authorize]
         [HttpPut]
-        [Route("{id}/level")]
+        [Route("{id:int}/level")]
         public async Task<IActionResult> UpdateLevel([FromRoute] int id, [FromBody] UpdateFlashcardLevelRequestDto updateFlashcardDto)
         {
             if (updateFlashcardDto.Level < 0 || updateFlashcardDto.Level > 5)
@@ -84,8 +90,9 @@ namespace backend.Controllers
             return Ok(flashcardModel.ToFlashcardDto());
         }
 
+        [Authorize]
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var flashcardModel = await _flashcardRepo.DeleteAsync(id);
