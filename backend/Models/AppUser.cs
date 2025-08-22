@@ -8,6 +8,6 @@ namespace backend.Models
 {
     public class AppUser : IdentityUser
     {
-        
+        public ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
     }
 }

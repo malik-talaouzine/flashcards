@@ -20,8 +20,8 @@ namespace backend.Models
 
         public string Answer { get; set; } = string.Empty;
 
-        // public int? UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
-        // public User? User { get; set; }
+        public AppUser User { get; set; } = null!;
     }
 }

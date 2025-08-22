@@ -9,11 +9,14 @@ namespace backend.Interfaces
 {
     public interface IFlashcardRepository
     {
-        Task<List<Flashcard>> GetAllAsync();
-        Task<Flashcard?> GetByIdAsync(int id);
+        Task<List<Flashcard>> GetAllByUserIdAsync(string userId);
+        Task<List<Flashcard>> GetDueTodayByUserIdAsync(string userId);
+
+        Task<Flashcard?> GetByIdAsync(int id, string userId);
         Task<Flashcard> CreateAsync(Flashcard flashcardModel);
-        Task<Flashcard?> UpdateContentAsync(int id, UpdateFlashcardContentRequestDto FlashcardDto);
-        Task<Flashcard?> UpdateLevelAsync(int id, UpdateFlashcardLevelRequestDto FlashcardDto);
-        Task<Flashcard?> DeleteAsync(int id);
+        Task<Flashcard?> UpdateAsync(int id, UpdateFlashcardRequestDto FlashcardDto, string userId);
+        Task<Flashcard?> UpdateContentAsync(int id, UpdateFlashcardContentRequestDto FlashcardDto, string userId);
+        Task<Flashcard?> UpdateLevelAsync(int id, UpdateFlashcardLevelRequestDto FlashcardDto, string userId);
+        Task<Flashcard?> DeleteAsync(int id, string userId);
     }
 }

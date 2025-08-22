@@ -25,9 +25,9 @@ namespace backend.Repository
             return flashcardModel;
         }
 
-        public async Task<Flashcard?> DeleteAsync(int id)
+        public async Task<Flashcard?> DeleteAsync(int id, string userId)
         {
-            var flashcardModel = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id);
+            var flashcardModel = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
             if (flashcardModel == null)
             {
                 return null;
@@ -37,19 +37,46 @@ namespace backend.Repository
             return flashcardModel;
         }
 
-        public async Task<List<Flashcard>> GetAllAsync()
+        public async Task<List<Flashcard>> GetAllByUserIdAsync(string userId)
         {
-            return await _context.Flashcards.ToListAsync();
+            return await _context.Flashcards.Where(x => x.UserId == userId).ToListAsync();
         }
 
-        public async Task<Flashcard?> GetByIdAsync(int id)
+        public async Task<Flashcard?> GetByIdAsync(int id, string userId)
         {
-            return await _context.Flashcards.FindAsync(id);
+            return await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
         }
 
-        public async Task<Flashcard?> UpdateContentAsync(int id, UpdateFlashcardContentRequestDto flashcardDto)
+        public async Task<List<Flashcard>> GetDueTodayByUserIdAsync(string userId)
         {
-            var existingFlashcard = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id);
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            return await _context.Flashcards
+                .Where(f => f.UserId == userId && f.NextQuery <= today)
+                .ToListAsync();
+        }
+
+        public async Task<Flashcard?> UpdateAsync(int id, UpdateFlashcardRequestDto flashcardDto, string userId)
+        {
+            var existingFlashcard = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
+
+            if (existingFlashcard == null)
+            {
+                return null;
+            }
+
+            existingFlashcard.Question = flashcardDto.Question;
+            existingFlashcard.Answer = flashcardDto.Answer;
+
+            existingFlashcard.NextQuery = DateOnly.FromDateTime(DateTime.Today.AddDays(3 * flashcardDto.Level));
+            existingFlashcard.Level = flashcardDto.Level;
+
+            await _context.SaveChangesAsync();
+            return existingFlashcard;
+        }
+
+        public async Task<Flashcard?> UpdateContentAsync(int id, UpdateFlashcardContentRequestDto flashcardDto, string userId)
+        {
+            var existingFlashcard = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
 
             if (existingFlashcard == null)
             {
@@ -63,9 +90,9 @@ namespace backend.Repository
             return existingFlashcard;
         }
 
-        public async Task<Flashcard?> UpdateLevelAsync(int id, UpdateFlashcardLevelRequestDto flashcardDto)
+        public async Task<Flashcard?> UpdateLevelAsync(int id, UpdateFlashcardLevelRequestDto flashcardDto, string userId)
         {
-            var existingFlashcard = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id);
+            var existingFlashcard = await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id && x.UserId == userId);
 
             if (existingFlashcard == null)
             {
