@@ -21,17 +21,16 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar /> {/* logout button is inside Navbar */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2rem" }}>
-        <button onClick={handleStart} style={{ margin: "1rem", padding: "1rem 2rem" }}>
-          Start
-        </button>
-        <button onClick={handleCollection} style={{ margin: "1rem", padding: "1rem 2rem" }}>
-          Collection
-        </button>
-        <button onClick={handleNewFlashcard} style={{ margin: "1rem", padding: "1rem 2rem" }}>
-          New Flashcard
-        </button>
+      <Navbar />
+      <div className="center" style={{ marginTop: "2rem" }}>
+        <div className="card" style={{ width: "100%", maxWidth: 920 }}>
+          <h2 style={{ marginTop: 0 }}>Dashboard</h2>
+          <div className="stack" style={{ marginTop: 12 }}>
+            <button className="btn btn--primary" onClick={handleStart}>Start Practice</button>
+            <button className="btn" onClick={handleCollection}>View Collection</button>
+            <button className="btn" onClick={handleNewFlashcard}>Create New Flashcard</button>
+          </div>
+        </div>
       </div>
     </div>
   );

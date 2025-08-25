@@ -12,11 +12,11 @@ const handleLogout = () => {
   };
 
   return (
-    <nav style={{ padding: "1rem", background: "#eee" }}>
-      <span>Flashcards App</span>
-      <button onClick={handleLogout} style={{ float: "right" }}>
-        Logout
-      </button>
+    <nav className="nav">
+      <div className="nav__brand" onClick={() => navigate("/dashboard")}>Flashcards</div>
+      <div className="nav__actions">
+        <button className="btn btn--ghost" onClick={handleLogout}>Logout</button>
+      </div>
     </nav>
   );
 };

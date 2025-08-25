@@ -2,7 +2,7 @@ import { FlashcardCard } from "./FlashcardCard";
 
 export const FlashcardList = ({ flashcards, onDelete, onUpdateLevel }) => {
   return (
-    <div>
+    <div className="stack">
       {flashcards.map((f) => (
         <FlashcardCard
           key={f.id}

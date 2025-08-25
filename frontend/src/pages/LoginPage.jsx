@@ -25,32 +25,38 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Login</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <label className="auth-label" htmlFor="username">Username</label>
+          <input
+            id="username"
+            className="auth-input"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          
+          <label className="auth-label" htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="auth-input"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-      {/* Clickable text for registration */}
-      <p
-        onClick={goToRegister}
-        style={{ marginTop: "10px", cursor: "pointer", color: "blue", textDecoration: "underline" }}
-      >
-        Not registered yet? Click here
-      </p>
+          <button type="submit" className="auth-button">Sign in</button>
+        </form>
+
+        <button type="button" className="auth-link" onClick={goToRegister}>
+          New here? Create an account
+        </button>
+      </div>
     </div>
   );
 };

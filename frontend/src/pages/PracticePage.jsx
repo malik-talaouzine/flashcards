@@ -19,9 +19,11 @@ const PracticePage = () => {
 
   if (flashcards.length === 0) {
     return (
-      <div style={{ textAlign: "center", marginTop: "2rem" }}>
-        <p>No flashcards available</p>
-        <button onClick={() => navigate("/dashboard")}>⬅ Back to Dashboard</button>
+      <div className="center" style={{ marginTop: "2rem" }}>
+        <div className="card" style={{ textAlign: "center", maxWidth: 520 }}>
+          <p style={{ marginTop: 0 }}>No flashcards available</p>
+          <button className="btn btn--ghost" onClick={() => navigate("/dashboard")}>⬅ Back to Dashboard</button>
+        </div>
       </div>
     );
   }
@@ -50,61 +52,47 @@ const PracticePage = () => {
 
 
   return (
-    <div style={{ textAlign: "center", marginTop: "2rem" }}>
-      <h2>Practice Flashcards</h2>
-      <button
-        onClick={() => navigate("/dashboard")}
-        style={{ marginBottom: "1rem" }}
-      >
-        ⬅ Back to Dashboard
-      </button>
+    <div className="center" style={{ marginTop: "2rem" }}>
+      <div style={{ width: "100%", maxWidth: 920 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h2 style={{ margin: 0 }}>Practice Flashcards</h2>
+          <button className="btn btn--ghost" onClick={() => navigate("/dashboard")}>
+            ⬅ Back to Dashboard
+          </button>
+        </div>
 
-      <div
-        style={{
-          border: "1px solid #ccc",
-          padding: "2rem",
-          margin: "1rem auto",
-          width: "300px",
-        }}
-      >
-        <p>
-          <strong>Question:</strong> {currentCard.question}
-        </p>
+        <div className="card" style={{ marginTop: 12 }}>
+          <p style={{ marginTop: 0 }}>
+            <strong>Question:</strong> {currentCard.question}
+          </p>
 
-        {!showResult ? (
-          <>
-            <input
-              type="text"
-              placeholder="Your answer..."
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
-              style={{ margin: "1rem", padding: "0.5rem", width: "100%" }}
-            />
-            <button onClick={handleSubmit}>Submit</button>
-          </>
-        ) : (
-          <div>
-            <p>
-              <strong>Your answer:</strong> {userAnswer}
-            </p>
-            <p>
-              <strong>Correct answer:</strong> {currentCard.answer}
-            </p>
-            <p>Were you correct?</p>
-            <button
-              onClick={() => handleNext(true)}
-              style={{ margin: "0.5rem", background: "green", color: "white" }}
-            >
-              Right
-            </button>
-            <button
-              onClick={() => handleNext(false)}
-              style={{ margin: "0.5rem", background: "red", color: "white" }}
-            >
-              Wrong
-            </button>
-          </div>
-        )}
+          {!showResult ? (
+            <>
+              <input
+                className="input"
+                type="text"
+                placeholder="Your answer..."
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+              />
+              <button className="btn btn--primary" style={{ marginTop: 10 }} onClick={handleSubmit}>Submit</button>
+            </>
+          ) : (
+            <div>
+              <p>
+                <strong>Your answer:</strong> {userAnswer}
+              </p>
+              <p>
+                <strong>Correct answer:</strong> {currentCard.answer}
+              </p>
+              <p>Were you correct?</p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+                <button className="btn btn--success" onClick={() => handleNext(true)}>Right</button>
+                <button className="btn btn--danger" onClick={() => handleNext(false)}>Wrong</button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

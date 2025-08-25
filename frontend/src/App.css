@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -39,4 +40,211 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* ---------- Shared UI ---------- */
+.btn {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.7em 1.2em;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #1a1a1a;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover {
+  border-color: #646cff;
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #646cff, #7f85ff);
+  color: white;
+  border: none;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn--success {
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+}
+
+.btn--danger {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(100, 108, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  max-width: 100%;
+}
+
+.input:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  overflow: hidden;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Navbar ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav__brand {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.nav__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- Table ---------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.table thead th {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Auth page styles */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 4rem);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 28px;
+  text-align: left;
+}
+
+.auth-title {
+  margin: 0 0 16px 0;
+  font-size: 1.75rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(100, 108, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  max-width: 100%;
+}
+
+.auth-input:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.auth-button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #646cff, #7f85ff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: transform 0.08s ease, box-shadow 0.2s ease;
+}
+
+.auth-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(100, 108, 255, 0.35);
+}
+
+.auth-link {
+  margin-top: 10px;
+  width: 100%;
+  background: transparent;
+  color: #8ea0ff;
+  border: none;
+  text-decoration: underline;
 }

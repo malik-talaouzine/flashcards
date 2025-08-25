@@ -50,85 +50,90 @@ const CollectionPage = () => {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>Flashcard Collection</h2>
-      <button onClick={() => navigate("/dashboard")} style={{ marginBottom: "1rem" }}>
-        Back to Dashboard
-      </button>
-      <table border="1" cellPadding="8" style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>Question</th>
-            <th>Answer</th>
-            <th>Level</th>
-            <th>Created At</th>
-            <th>Next Query</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {flashcards.map(f => (
-            <tr key={f.id}>
-              <td>
-                {editId === f.id ? (
-                  <input
-                    type="text"
-                    value={editValues.question}
-                    onChange={(e) =>
-                      setEditValues(prev => ({ ...prev, question: e.target.value }))
-                    }
-                  />
-                ) : f.question}
-              </td>
-              <td>
-                {editId === f.id ? (
-                  <input
-                    type="text"
-                    value={editValues.answer}
-                    onChange={(e) =>
-                      setEditValues(prev => ({ ...prev, answer: e.target.value }))
-                    }
-                  />
-                ) : f.answer}
-              </td>
-              <td>
-                {editId === f.id ? (
-                  <input
-                    type="number"
-                    min="0"
-                    max="5"
-                    value={editValues.level}
-                    onChange={(e) =>
-                      setEditValues(prev => ({
-                        ...prev,
-                        level: parseInt(e.target.value) || 0,
-                      }))
-                    }
-                  />
-                ) : f.level}
-              </td>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+        <h2 style={{ margin: 0 }}>Flashcard Collection</h2>
+        <button className="btn btn--ghost" onClick={() => navigate("/dashboard")}>Back to Dashboard</button>
+      </div>
+      <div className="card" style={{ overflowX: "auto" }}>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>Level</th>
+              <th>Created At</th>
+              <th>Next Query</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flashcards.map(f => (
+              <tr key={f.id}>
+                <td>
+                  {editId === f.id ? (
+                    <input
+                      className="input"
+                      type="text"
+                      value={editValues.question}
+                      onChange={(e) =>
+                        setEditValues(prev => ({ ...prev, question: e.target.value }))
+                      }
+                    />
+                  ) : f.question}
+                </td>
+                <td>
+                  {editId === f.id ? (
+                    <input
+                      className="input"
+                      type="text"
+                      value={editValues.answer}
+                      onChange={(e) =>
+                        setEditValues(prev => ({ ...prev, answer: e.target.value }))
+                      }
+                    />
+                  ) : f.answer}
+                </td>
+                <td>
+                  {editId === f.id ? (
+                    <input
+                      className="input"
+                      type="number"
+                      min="0"
+                      max="5"
+                      value={editValues.level}
+                      onChange={(e) =>
+                        setEditValues(prev => ({
+                          ...prev,
+                          level: parseInt(e.target.value) || 0,
+                        }))
+                      }
+                    />
+                  ) : f.level}
+                </td>
                 <td>{formatDate(f.createdAt)}</td>
                 <td>{formatDate(f.nextQuery)}</td>
-              <td>
-                {editId === f.id ? (
-                  <>
-                    <button onClick={() => handleUpdate(f.id)} style={{ marginRight: "0.5rem" }}>
-                      Save
-                    </button>
-                    <button onClick={() => setEditId(null)}>Cancel</button>
-                  </>
-                ) : (
-                  <>
-                    <button onClick={() => startEdit(f)} style={{ marginRight: "0.5rem" }}>
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete(f.id)}>Delete</button>
-                  </>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <td style={{ whiteSpace: "nowrap" }}>
+                  {editId === f.id ? (
+                    <>
+                      <button className="btn btn--primary" onClick={() => handleUpdate(f.id)} style={{ marginRight: 8 }}>
+                        Save
+                      </button>
+                      <button className="btn btn--ghost" onClick={() => setEditId(null)}>Cancel</button>
+                    </>
+                  ) : (
+                    <>
+                      <button className="btn" onClick={() => startEdit(f)} style={{ marginRight: 8 }}>
+                        Edit
+                      </button>
+                      <button className="btn btn--ghost" onClick={() => handleDelete(f.id)}>Delete</button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

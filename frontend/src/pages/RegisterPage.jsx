@@ -21,39 +21,43 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-
-      {/* Clickable text to go back to login */}
-      <p
-        onClick={() => navigate("/")}
-        style={{ marginTop: "10px", cursor: "pointer", color: "blue", textDecoration: "underline" }}
-      >
-        Already have an account? Click here to login
-      </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Register</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <label className="auth-label" htmlFor="username">Username</label>
+          <input
+            id="username"
+            className="auth-input"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label className="auth-label" htmlFor="email">Email</label>
+          <input
+            id="email"
+            className="auth-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label className="auth-label" htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="auth-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button className="auth-button" type="submit">Create account</button>
+        </form>
+        <button type="button" className="auth-link" onClick={() => navigate("/")}>Already have an account? Sign in</button>
+      </div>
     </div>
   );
 };

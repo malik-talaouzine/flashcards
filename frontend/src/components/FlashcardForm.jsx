@@ -12,20 +12,22 @@ export const FlashcardForm = ({ onCreate }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="stack">
       <input
+        className="input"
         placeholder="Question"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         required
       />
       <input
+        className="input"
         placeholder="Answer"
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         required
       />
-      <button type="submit">Add Flashcard</button>
+      <button className="btn btn--primary" type="submit">Add Flashcard</button>
     </form>
   );
 };
