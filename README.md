@@ -101,7 +101,7 @@ Frontend:
 
 ## API Overview
 
-Base URL: `http://localhost:5000/api`
+Base URL: `http://localhost:8080/`
 
 - `POST /login` – returns `{ token }`
 - `POST /register` – creates a user
@@ -110,9 +110,9 @@ Base URL: `http://localhost:5000/api`
 - `PUT /flashcards/{id}` – update a card
 - `DELETE /flashcards/{id}` – delete a card
 - `GET /flashcards/due-today` – practice queue for today
+- `PUT /flashcards/{id}/content` – update card content
 - `PUT /flashcards/{id}/level` – update card level after practice
 
-Note: Exact route prefixes may vary depending on controller attributes. See `Controllers/*` for details.
 
 ---
 
@@ -122,13 +122,12 @@ Note: Exact route prefixes may vary depending on controller attributes. See `Con
 ```bash
 docker compose up --build
 ```
-This builds and runs both backend and frontend services as defined in `docker-compose.yml`.
+This builds and runs the backend service as defined in `docker-compose.yml`.
 
-### Backend Only
+In another terminal run:
 ```bash
-cd backend
-docker build -t flashcards-backend .
-docker run -p 5000:5000 flashcards-backend
+cd frontend
+npm run dev
 ```
 
 ---
