@@ -60,9 +60,11 @@ Modern full‑stack application for creating, reviewing, and managing flashcards
 
 ### 1) Clone
 ```bash
-git clone https://github.com/malik-talaouzine/flashcards.git 
+git clone https://github.com/malik-talaouzine/flashcards.git (HTTPS)
 OR
-git clone git@github.com:malik-talaouzine/flashcards.git
+git clone git@github.com:malik-talaouzine/flashcards.git (SSH)
+
+THEN
 cd flashcards
 ```
 
@@ -73,7 +75,7 @@ dotnet restore
 dotnet build
 dotnet run
 ```
-By default, the API listens on `http://localhost:5000` (adjust via `backend/appsettings.json` or `launchSettings.json`).
+By default, the API listens on `http://localhost:8080` (adjust via `backend/appsettings.json` or `launchSettings.json`).
 
 Key files:
 - `Program.cs`: service registration, CORS, auth, controllers
