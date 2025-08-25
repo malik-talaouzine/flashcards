@@ -60,7 +60,9 @@ Modern full‑stack application for creating, reviewing, and managing flashcards
 
 ### 1) Clone
 ```bash
-git clone <your-fork-or-repo-url>
+git clone https://github.com/malik-talaouzine/flashcards.git 
+OR
+git clone git@github.com:malik-talaouzine/flashcards.git
 cd flashcards
 ```
 
